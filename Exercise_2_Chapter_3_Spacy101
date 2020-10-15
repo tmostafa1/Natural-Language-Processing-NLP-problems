@@ -1,0 +1,31 @@
+##the following code processes a text, tag it, and appends all the words tagged as nouns in a list
+text=open('E:\Animals.txt', 'r')
+my_text=text.read().strip()
+print(my_text)
+#my_text=my_text.strip().split()
+import spacy
+from spacy.matcher import PhraseMatcher 
+from spacy.tokens import Span
+nlp=spacy.load ('en_core_web_sm')
+doc=nlp(my_text)
+animals=[]
+for word in doc:   
+    tagged_word=word.pos_
+    if tagged_word=="NOUN":
+        animals.append(word)
+print(animals)
+
+#input
+a txt file
+
+#output
+Admiral, indian red
+Adouri (unidentified)
+African black crake
+African buffalo
+African bush squirrel
+African clawless otter
+African darter
+African elephant
+African fish eagle
+[red, crake, buffalo, squirrel, clawless, darter, elephant, fish, eagle]
