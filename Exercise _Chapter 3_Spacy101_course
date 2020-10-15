@@ -1,0 +1,40 @@
+#In this exercise, you’ll be writing a custom component that uses the PhraseMatcher to find animal names in the document 
+#and adds the matched spans to the doc.ents. A PhraseMatcher with the animal patterns has already been created as the variable 
+#matcher.
+
+#Define the custom component and apply the matcher to the doc.
+#Create a Span for each match, assign the label ID for "ANIMAL" and overwrite the doc.ents with the new spans.
+#Add the new component to the pipeline after the "ner" component.
+#Process the text and print the entity text and entity label for the entities in doc.ents.
+
+import spacy
+from spacy.matcher import PhraseMatcher
+from spacy.tokens import Span
+nlp=spacy.load('en_core_web_sm')
+animals=['buffalo', 'squirrel', 'otter', 'elephant', 'eagle']
+pattern=list(nlp.pipe(animals))
+print('animal_pattern:', pattern)
+matcher=PhraseMatcher(nlp.vocab)
+matcher.add('id_Animal', None, *pattern) ##pattern is added to the matcher
+def animal_annotation(doc):    
+    matches=matcher(doc)    
+    span=[Span(doc, start, end, label='ANIMAL')for match_id, start, end in matches]
+    doc.ents=span
+    return doc
+nlp.add_pipe(animal_annotation, after='ner')
+print(nlp.pipe_names)
+text=open('E:\Animals.txt', 'r')
+my_text=text.read().strip().split()
+my_text_s=' '.join(my_text)
+doc=nlp(my_text_s)
+print([(ent.text, ent.label_) for ent in doc.ents])
+
+
+#input
+a txt file
+
+#output
+animal_pattern: [buffalo, squirrel, otter, elephant, eagle]
+['tagger', 'parser', 'ner', 'animal_annotation']
+[('buffalo', 'ANIMAL'), ('squirrel', 'ANIMAL'), ('otter', 'ANIMAL'), ('elephant', 'ANIMAL'), ('eagle', 'ANIMAL')]
+​
