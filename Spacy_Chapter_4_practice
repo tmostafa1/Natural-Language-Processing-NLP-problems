@@ -1,0 +1,24 @@
+##spaCy’s rule-based Matcher is a great way to quickly create training data for named entity models. 
+##A list of sentences is available as the variable TEXTS. You can print it to inspect it. 
+##We want to find all mentions of different iPhone models, 
+##so we can create training data to teach a model to recognize them as "GADGET".
+##Write a pattern for two tokens whose lowercase forms match "iphone" and "x".
+##Write a pattern for two tokens: one token whose lowercase form matches "iphone" and a digit.
+
+import spacy
+from spacy.matcher import Matcher
+from spacy.lang.en import English
+nlp=English()
+text=open('F:\OneDriveGSU\OneDrive - Georgia State University\Python_practice\hafsa.txt', 'r')
+matcher=Matcher(nlp.vocab)
+pattern1=[{'LOWER': 'apartment'}, {'LOWER': 'complex'}]
+matcher.add('try', None, pattern1)
+for doc in nlp.pipe(text):
+    a=([doc[start:end] for match_id, start, end in matcher(doc)])
+    if a != []:
+        print(a)
+
+    
+ ##output
+ [apartment complex, apartment complex, apartment complex]
+[apartment complex]
