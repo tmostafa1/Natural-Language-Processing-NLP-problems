@@ -1,0 +1,14 @@
+## the following code is for cleaning up a text from punctuation marks
+with open('F:\\OneDriveGSU\\OneDrive - Georgia State University\\Python_practice\\Julian.txt') as text:
+    text=text.read()
+    my_text=text.strip()
+    lis=re.findall(r'[^.,\'?]+', my_text)
+    print(''.join(lis))
+
+#output
+
+Hi My name is Julian Ramon and If I had the choice of picking between living in my own apartment with my other roommates or living in an apartment with my family members um it would come to a decision depending on what kind of apartment would I get with my roommates I feel like for me one of the most important things is my personal space So if I had my own room my own restroom and 
+all of these things um I would pick living with my roommates just because there is no-- When-when youre on your own and your roommates youre-youre the owner of your own space That means theres no distractions
+For example if you live with your family that means that you- youre most likely to have um siblings small siblings So theyre going to come distract you Theres isnt gonna be enough silence for you to study and especially like during exams weeks and all that you need your own space and plus technology is such a big thing right now so if you miss your family you can just FaceTime them
+ another thing is about being young and having the option of you know have your friends over whenever you want to and do things 
+that you wouldnt want to do at home just because your parents Im guessing they work So it wouldnt be the same with them as without them And that one last thing that I would say is they they probably have to like wake up early or your siblings have to go to school early so that means you have to keep quiet and you cant be yourself And you know its not the same Thats why I would pick living in my own apartment with my roommates
